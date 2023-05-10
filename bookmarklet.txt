@@ -1,0 +1,14 @@
+var params = "";
+function addparam (name, val) {
+	if (params.length > 0) {
+		params += "&";
+		}
+	params += name + "=" + encodeURIComponent (val);
+	}
+addparam ("linkblog", "true");
+addparam ("title", document.title);
+addparam ("description", window.getSelection ().toString ());
+addparam ("link", window.location.href);
+var callUrl = "[%app%]?" + params;
+console.log (callUrl);
+window.open(callUrl, %27_blank%27);
