@@ -5,7 +5,7 @@ function addparam (name, val) {
 		}
 	params += name + "=" + encodeURIComponent (val);
 	}
-addparam ("linkblog", "true");
+addparam ("[%command%]", "true");
 addparam ("title", document.title);
 addparam ("description", window.getSelection ().toString ());
 addparam ("link", window.location.href);

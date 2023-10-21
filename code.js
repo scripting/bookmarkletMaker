@@ -15,18 +15,22 @@ function startup () {
 	console.log ("startup");
 	
 	var replacetable = {
-		app: "https://feedland.org/"
+		app: "https://feedland.org/",
+		command: "linkblog"
 		};
 	
 	var urlParams = getAllUrlParams (location.search); 
 	if (urlParams.app !== undefined) {
 		replacetable.app = urlParams.app;
 		}
+	if (urlParams.command !== undefined) { //10/21/23 by DW
+		replacetable.command = urlParams.command;
+		}
 	if (urlParams.name !== undefined) {
 		$(".ancBookmarklet").text (urlParams.name);
 		}
 	
-	readHttpFileThruProxy ("http://scripting.com/code/testing/bookmarkletmaker/bookmarklet.txt", undefined, function (theText) {
+	readHttpFileThruProxy ("http://scripting.com/code/bookmarkletmaker/bookmarklet.txt", undefined, function (theText) {
 		if (theText !== undefined) {
 			theText = multipleReplaceAll (theText, replacetable, true, "[%", "%]");
 			$(".divBookmarklet a").attr ("href", "javascript:(function () {" + theText + "})();");
